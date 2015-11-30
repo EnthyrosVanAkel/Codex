@@ -56,16 +56,16 @@
 						</div>
 					@endif
 
-                    <form role="form" method="POST" action="{{ url('/auth/login') }}">
+                    <form role="form" method="POST" action="{{ url('/admin/login') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <h1>ADMIN</h1>
                         <div>
-                            <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                            <input type="email" placeholder="email" class="form-control" name="email" value="{{ old('email') }}">
                         </div>
                         
                         <div>
-                            <input type="password" class="form-control" name="password">
+                            <input type="password" placeholder="password" class="form-control" name="password">
                         </div>
                         
                         <div>
@@ -80,7 +80,7 @@
                         <div class="separator">
 
                             <p>New to site?
-                                <a href="{{ url('/auth/register') }}"> Create Account </a>
+                                <a href="{{ url('/admin/register') }}"> Create Account </a>
                             </p>
                             <div class="clearfix"></div>
                             <br />
@@ -88,41 +88,6 @@
                                 <h1><i class="fa fa-paw" style="font-size: 26px;"></i> CODEX</h1>
 
                                 <p>©2015 All Rights Reserved.<br>CODEX<br>Privacy and Terms</p>
-                            </div>
-                        </div>
-                    </form>
-                    <!-- form -->
-                </section>
-                <!-- content -->
-            </div>
-            <div id="register">
-                <section class="login_content">
-                    <form>
-                        <h1>Create Account</h1>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Username" required="" />
-                        </div>
-                        <div>
-                            <input type="email" class="form-control" placeholder="Email" required="" />
-                        </div>
-                        <div>
-                            <input type="password" class="form-control" placeholder="Password" required="" />
-                        </div>
-                        <div>
-                            <a class="btn btn-default submit" href="index.html">Submit</a>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="separator">
-
-                            <p class="change_link">Already a member ?
-                                <a href="#tologin" class="to_register"> Log in </a>
-                            </p>
-                            <div class="clearfix"></div>
-                            <br />
-                            <div>
-                                <h1><i class="fa fa-paw" style="font-size: 26px;"></i> Gentelella Alela!</h1>
-
-                                <p>©2015 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
                             </div>
                         </div>
                     </form>
