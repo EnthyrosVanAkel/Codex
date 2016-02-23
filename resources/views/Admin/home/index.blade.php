@@ -27,14 +27,12 @@
                                     <table id="example" class="table table-striped responsive-utilities jambo_table">
                                         <thead>
                                             <tr class="headings">
-                                                <th>
-                                                    <input type="checkbox" class="tableflat">
-                                                </th>
                                                 <th>ID</th>
                                                 <th>Fecha de creación</th>
                                                 <th>Libro</th>
                                                 <th>Autor</th>
                                                 <th>N° extractos</th>
+                                                <th>Genero</th>
                                                 <th>Modificar</th>
                                                 </th>
                                             </tr>
@@ -43,15 +41,13 @@
                                         <tbody>
                                             @foreach($libros as $libro)
                                             <tr class="odd pointer">
-                                                <td class="a-center ">
-                                                <input type="checkbox" class="tableflat">
-                                                </td>
                                                 <td class=" ">{{ $libro->id }}</td>
                                                 <td class=" ">{{ $libro->created_at }}</td>
                                                 <td class=" "><a href="/admin/home/{{ $libro->id }}">{{ $libro->nombre }}</a>
                                                 </td>
                                                 <td class=" ">{{ $libro->autor }}</td>
                                                 <td class=" ">{{ count($libro->extractos) }}</td>
+                                                <td class=" ">{{ $libro->genero }}</td>
                                                 <td class="a-left a-left ">
                                                     <a href="/admin/home/{{$libro->id}}/editar"<i class="fa fa-wrench"></i></a>
                                                     <a href="#"><i class="fa fa-close"></i></a>
