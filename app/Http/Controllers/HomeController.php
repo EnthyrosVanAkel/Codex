@@ -41,6 +41,8 @@ class HomeController extends Controller
 
         $libro->nombre = $request->input('nombre');
         $libro->autor = $request->input('autor');
+        $libro->url_amazon = $request->input('url_amazon');
+        $libro->genero = $request->input('genero');
         $libro->url_img = $nombre;
         $libro->save();  
 
@@ -71,16 +73,20 @@ class HomeController extends Controller
     public function modificar_libro($id,ModificarLibroRequest $request){
        	$libro = Libro::find($id);
         $borrar = $libro->url_img;
-        //Borra la imagen
-        \Storage::disk('local')->exists($borrar);
-        //Agrega la nueva imagen
-        $file = $request->file('imagen');
-        $nombre = $file->getClientOriginalName();
-        \Storage::disk('local')->put($nombre, \File::get($file));
-        //modifica los campos
+        if($request->file('imagen')){
+            //Borra la imagen
+            \Storage::disk('local')->exists($borrar);
+            //Agrega la nueva imagen
+            $file = $request->file('imagen');
+            $nombre = $file->getClientOriginalName();
+            \Storage::disk('local')->put($nombre, \File::get($file));
+            //modifica los campos
+            $libro->url_img = $nombre; 
+        }
         $libro->nombre = $request->input('nombre');
         $libro->autor = $request->input('autor');
-        $libro->url_img = $nombre; 
+        $libro->url_amazon = $request->input('url_amazon');
+        $libro->genero = $request->input('genero');
         $libro->save();
 
         return redirect('admin/home');

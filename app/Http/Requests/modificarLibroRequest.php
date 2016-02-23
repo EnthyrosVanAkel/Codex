@@ -27,7 +27,8 @@ class modificarLibroRequest extends Request
             //
         'nombre' => 'required',
         'autor' => 'required',
-        'imagen' => 'required',
+        'genero' =>'required',
+        'url_amazon' => 'required'
         ];
     }
 }

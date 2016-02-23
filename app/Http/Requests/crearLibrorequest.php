@@ -28,6 +28,8 @@ class crearLibrorequest extends Request
         'nombre' => 'required',
         'autor' => 'required',
         'imagen' => 'required',
+        'genero' =>'required',
+        'url_amazon' => 'required',
         'extracto1' => 'required',
         'extracto2' => 'required',
         'extracto3' => 'required'

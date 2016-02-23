@@ -19,7 +19,7 @@
                                     <div class="clearfix"></div>
 
 
-                                    {!! Form::open(['method'  => 'POST','action' =>['HomeController@guardar_libro'],'files' => 'true']) !!}
+                  {!! Form::open(['method'  => 'POST','action' =>['HomeController@guardar_libro'],'files' => 'true']) !!}
                   <div class="box-body">
 
                     <div class="form-group col-xs-12">
@@ -29,6 +29,12 @@
                         <br>
                          {!! Form::label('autor','Autor: ') !!}
                         {!! Form::text('autor',null,['class'=>'form-control','placeholder'=>'Autor del libro']) !!}
+                        <br>
+                        {!! Form::label('genero','Genero: ') !!}
+                        {!! Form::text('genero',null,['class'=>'form-control','placeholder'=>'Genero del libro']) !!}
+                        <br>
+                        {!! Form::label('url_amazon','URL: ') !!}
+                        {!! Form::text('url_amazon',null,['class'=>'form-control','placeholder'=>'URL de amazon del libro']) !!}
                         <br>
                         {!! form::file('imagen',null,['class' => 'form-control']) !!}
 

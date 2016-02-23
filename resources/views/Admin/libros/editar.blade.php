@@ -28,6 +28,12 @@
                          {!! Form::label('autor','Autor: ') !!}
                         {!! Form::text('autor',null,['class'=>'form-control','placeholder'=>'Autor del libro']) !!}
                         <br>
+                        {!! Form::label('genero','Genero: ') !!}
+                        {!! Form::text('genero',null,['class'=>'form-control','placeholder'=>'Genero del libro']) !!}
+                        <br>
+                        {!! Form::label('url_amazon','URL: ') !!}
+                        {!! Form::text('url_amazon',null,['class'=>'form-control','placeholder'=>'URL de amazon del libro']) !!}
+                        <br>
                         {!! form::file('imagen',null,['class' => 'form-control']) !!}
                     </div>
 
