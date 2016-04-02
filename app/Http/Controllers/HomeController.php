@@ -36,15 +36,18 @@ class HomeController extends Controller
         $extracto3 = new Extracto();
 
         $file = $request->file('imagen');
-        $nombre = $file->getClientOriginalName();
+        $nombre = 'libro'.
         \Storage::disk('local')->put($nombre, \File::get($file)); 
 
         $libro->nombre = $request->input('nombre');
         $libro->autor = $request->input('autor');
         $libro->url_amazon = $request->input('url_amazon');
         $libro->genero = $request->input('genero');
+        $libro->save();
+        $nombre = 'libro'.$libro->id;
         $libro->url_img = $nombre;
-        $libro->save();  
+        $libro->save();
+
 
         $extracto1->libro_id = $libro->id;
         $extracto1->extracto_texto = $request->input('extracto1');
