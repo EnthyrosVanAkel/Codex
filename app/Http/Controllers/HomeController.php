@@ -36,8 +36,7 @@ class HomeController extends Controller
         $extracto3 = new Extracto();
 
         $file = $request->file('imagen');
-        $nombre = 'libro'.
-        \Storage::disk('local')->put($nombre, \File::get($file)); 
+        
 
         $libro->nombre = $request->input('nombre');
         $libro->autor = $request->input('autor');
@@ -47,6 +46,7 @@ class HomeController extends Controller
         $nombre = 'libro'.$libro->id;
         $libro->url_img = $nombre;
         $libro->save();
+        \Storage::disk('local')->put($nombre, \File::get($file)); 
 
 
         $extracto1->libro_id = $libro->id;

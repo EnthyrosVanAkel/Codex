@@ -39,3 +39,10 @@ Route::get('admin/home/{id}','HomeController@mostrar_libro');
 Route::get('admin/home/{id}/editar','HomeController@editar_libro');
 Route::patch('admin/home/{id}','HomeController@modificar_libro');
 Route::delete('admin/home/{id}','HomeController@borrar_libro');
+
+
+
+// ################ API ################
+
+Route::post('xyz/api/create_reader','APIController@crear_lector');
+Route::patch('xyz/api/modify_reader/{id}','APIController@modificar_lector');
