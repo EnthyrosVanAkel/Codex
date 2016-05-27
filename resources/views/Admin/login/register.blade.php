@@ -56,7 +56,7 @@
 						</div>
 					@endif
 
-                    <form role="form" method="POST" action="{{ url('/admin/register') }}">
+                    <form role="form" method="POST" action="{{ url('/xyz/admin/register') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <h1>Create Account</h1>
@@ -82,7 +82,7 @@
                         <div class="separator">
 
                              <p class="change_link">Already a member ?
-                                <a href="{{ url('/admin/login') }}" class="to_register"> Log in </a>
+                                <a href="{{ url('/xyz/admin/login') }}" class="to_register"> Log in </a>
                             </p>
                             <div class="clearfix"></div>
                             <br />

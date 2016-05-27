@@ -1,12 +1,14 @@
 {
 	"name": "CODEX",
 	"description": "CODEX ",
-	"keywords": ["framework", "laravel"],
+	"keywords": ["CODEX", "BOOK"],
 	"license": "MIT",
 	"type": "project",
 	"require": {
 		"laravelcollective/html": "~5.0",
-		"laravel/framework": "5.0.*"
+		"doctrine/dbal": "v2.4.2",
+		"league/flysystem-aws-s3-v3":"~1.0",
+		"laravel/framework": "5.1.*"
 
 	},
 	"require-dev": {

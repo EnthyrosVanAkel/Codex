@@ -42,8 +42,10 @@ class HomeController extends Controller
         $libro->autor = $request->input('autor');
         $libro->url_amazon = $request->input('url_amazon');
         $libro->genero = $request->input('genero');
+        $libro->subgenero = $request->input('subgenero');
         $libro->save();
-        $nombre = 'libro'.$libro->id;
+        $extension = $file->getClientOriginalExtension();
+        $nombre = 'libro'.$libro->id.'.'.$extension;
         $libro->url_img = $nombre;
         $libro->save();
         \Storage::disk('local')->put($nombre, \File::get($file)); 
@@ -51,20 +53,23 @@ class HomeController extends Controller
 
         $extracto1->libro_id = $libro->id;
         $extracto1->extracto_texto = $request->input('extracto1');
+        $extracto1->tipo = $request->input('tipo1');
         $extracto1->votos = 0;
         $extracto1->save();
 
         $extracto2->libro_id = $libro->id;
         $extracto2->extracto_texto = $request->input('extracto2');
+        $extracto2->tipo = $request->input('tipo2');
         $extracto2->votos = 0;
         $extracto2->save();
 
         $extracto3->libro_id = $libro->id;
         $extracto3->extracto_texto = $request->input('extracto3');
+        $extracto3->tipo = $request->input('tipo3');
         $extracto3->votos = 0;
         $extracto3->save();
 
-        return redirect('admin/home');
+        return redirect('xyz/admin/home');
     }
 
     public function editar_libro($id){
@@ -81,7 +86,9 @@ class HomeController extends Controller
             \Storage::disk('local')->exists($borrar);
             //Agrega la nueva imagen
             $file = $request->file('imagen');
-            $nombre = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $nombre = 'libro'.$libro->id.'.'.$extension;
+            //$libro->url_img = $nombre;
             \Storage::disk('local')->put($nombre, \File::get($file));
             //modifica los campos
             $libro->url_img = $nombre; 
@@ -90,9 +97,10 @@ class HomeController extends Controller
         $libro->autor = $request->input('autor');
         $libro->url_amazon = $request->input('url_amazon');
         $libro->genero = $request->input('genero');
+        $libro->subgenero = $request->input('subgenero');
         $libro->save();
 
-        return redirect('admin/home');
+        return redirect('xyz/admin/home');
     }
 
     public function borrar_libro($id){
@@ -101,7 +109,7 @@ class HomeController extends Controller
             $opcion->delete();
         }
         $libro->delete();
-        return redirect('admin/home');
+        return redirect('xyz/admin/home');
     }
 
 

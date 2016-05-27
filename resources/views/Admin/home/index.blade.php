@@ -19,7 +19,7 @@
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2>Libros agregados</h2>
-                                    <button onclick="location.href='/admin/home/addbook';" class="btn btn-sm pull-right" ><i class="fa fa-plus-circle"></i> Agregar</button>
+                                    <button onclick="location.href='/xyz/admin/home/addbook';" class="btn btn-sm pull-right" ><i class="fa fa-plus-circle"></i> Agregar</button>
                   
                                     <div class="clearfix"></div>
                                 </div>
@@ -43,13 +43,13 @@
                                             <tr class="odd pointer">
                                                 <td class=" ">{{ $libro->id }}</td>
                                                 <td class=" ">{{ $libro->created_at }}</td>
-                                                <td class=" "><a href="/admin/home/{{ $libro->id }}">{{ $libro->nombre }}</a>
+                                                <td class=" "><a href="/xyz/admin/home/{{ $libro->id }}">{{ $libro->nombre }}</a>
                                                 </td>
                                                 <td class=" ">{{ $libro->autor }}</td>
                                                 <td class=" ">{{ count($libro->extractos) }}</td>
                                                 <td class=" ">{{ $libro->genero }}</td>
                                                 <td class="a-left a-left ">
-                                                    <a href="/admin/home/{{$libro->id}}/editar"<i class="fa fa-wrench"></i></a>
+                                                    <a href="/xyz/admin/home/{{$libro->id}}/editar"<i class="fa fa-wrench"></i></a>
                                                     <a href="#"><i class="fa fa-close"></i></a>
                                                 </td>
                                                 </td>

@@ -11,7 +11,7 @@
 |
 */
 
-//Route::get('/', 'WelcomeController@index');
+Route::get('/', 'StaticController@index');
 /*
 Route::get('home', 'HomeController@index');
 
@@ -22,27 +22,31 @@ Route::controllers([
 */
 
 // Authentication routes...
-Route::get('admin/login', 'AdminController@login');
-Route::post('admin/login', 'AdminController@acceso');
-Route::get('admin/logout', 'AdminController@logout');
+Route::get('xyz/admin/login', 'AdminController@login');
+Route::post('xyz/admin/login', 'AdminController@acceso');
+Route::get('xyz/admin/logout', 'AdminController@logout');
 
 // Registration routes...
-Route::get('admin/register', 'AdminController@registrar');
-Route::post('admin/register', 'AdminController@registrado');
+Route::get('xyz/admin/register', 'AdminController@registrar');
+Route::post('xyz/admin/register', 'AdminController@registrado');
 
 //Home
-Route::get('admin/home', 'HomeController@index');
-Route::get('admin/home/addbook','HomeController@agregar_libro');
-Route::post('admin/home','HomeController@guardar_libro');
+Route::get('xyz/admin/home', 'HomeController@index');
+Route::get('xyz/admin/home/addbook','HomeController@agregar_libro');
+Route::post('xyz/admin/home','HomeController@guardar_libro');
 
-Route::get('admin/home/{id}','HomeController@mostrar_libro');
-Route::get('admin/home/{id}/editar','HomeController@editar_libro');
-Route::patch('admin/home/{id}','HomeController@modificar_libro');
-Route::delete('admin/home/{id}','HomeController@borrar_libro');
+Route::get('xyz/admin/home/{id}','HomeController@mostrar_libro');
+Route::get('xyz/admin/home/{id}/editar','HomeController@editar_libro');
+Route::patch('xyz/admin/home/{id}','HomeController@modificar_libro');
+Route::delete('xyz/admin/home/{id}','HomeController@borrar_libro');
 
 
 
 // ################ API ################
 
+//LIBROS
+
+Route::get('xyz/api/libros_list','APIController@lista_libros');
+//LECTORES
 Route::post('xyz/api/create_reader','APIController@crear_lector');
 Route::patch('xyz/api/modify_reader/{id}','APIController@modificar_lector');

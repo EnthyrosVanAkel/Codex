@@ -18,6 +18,14 @@ use Carbon\Carbon;
 class APIController extends Controller {
 
 	//
+    //LIBROS
+    function lista_libros(){
+        $libros = Libro::with('extractos')->get();
+        return $libros;
+    }
+
+
+    //LECTORES
     function crear_lector(Request $request){
         if($request){
             $lector = new Lectores();

@@ -31,7 +31,10 @@
                         {!! Form::text('autor',null,['class'=>'form-control','placeholder'=>'Autor del libro']) !!}
                         <br>
                         {!! Form::label('genero','Genero: ') !!}
-                        {!! Form::text('genero',null,['class'=>'form-control','placeholder'=>'Genero del libro']) !!}
+                        {!! Form::select('genero', ['NOVELA' => 'NOVELA','ENSAYO' => 'ENSAYO','POESIA' => 'POESIA','CUENTO' => 'CUENTO','TEATRO' => 'TEATRO']) !!}
+                        <br>
+                        {!! Form::label('subgenero','Subgenero: ') !!}
+                        {!! Form::text('subgenero',null,['class'=>'form-control','placeholder'=>'Subgenero del libro']) !!}
                         <br>
                         {!! Form::label('url_amazon','URL: ') !!}
                         {!! Form::text('url_amazon',null,['class'=>'form-control','placeholder'=>'URL de amazon del libro']) !!}
@@ -41,16 +44,19 @@
                       <div class="col-xs-4">
                         <h3>S</h3>
                         {!! Form::textarea('extracto1',null,['class'=>'form-control','row'=>'3','placeholder'=>'Extracto chico....']) !!}
+                        {!! Form::hidden('tipo1', 'S') !!}
                       </div>
 
                       <div class="col-xs-4">
                         <h3>M</h3>
                         {!! Form::textarea('extracto2',null,['class'=>'form-control','row'=>'5','placeholder'=>'Extracto mediano....']) !!}
+                        {!! Form::hidden('tipo2', 'M') !!}
                       </div>
 
                       <div class="col-xs-4">
                         <h3>L</h3>
                         {!! Form::textarea('extracto3',null,['class'=>'form-control','row'=>'8','placeholder'=>'Extracto grande....']) !!}
+                        {!! Form::hidden('tipo3', 'L') !!}
                       </div>
                     </div>
 

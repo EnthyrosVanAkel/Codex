@@ -18,7 +18,7 @@
     </div>
 
     <div class="row" id="inicio">
-    <form class="col s12" role="form" method="POST" action="{{ url('/admin/login') }}">
+    <form class="col s12" role="form" method="POST" action="{{ url('/xyz/admin/login') }}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="row">
         <div class="input-field col s12">
