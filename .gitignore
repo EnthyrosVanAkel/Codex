@@ -4,7 +4,9 @@ Homestead.yaml
 Homestead.json
 .env
 
-.openshift/
 
-
-.elasticbeanstalk/
+
+
+
+.elasticbeanstalk/
+
