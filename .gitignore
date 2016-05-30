@@ -4,15 +4,7 @@ Homestead.yaml
 Homestead.json
 .env
 
-
-
-
-
-.elasticbeanstalk/
+.openshift/
 
 
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+.elasticbeanstalk/

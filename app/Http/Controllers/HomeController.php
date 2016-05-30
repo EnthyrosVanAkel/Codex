@@ -36,40 +36,35 @@ class HomeController extends Controller
         $extracto3 = new Extracto();
 
         $file = $request->file('imagen');
-        
+        $nombre = 'libro'.
+        \Storage::disk('local')->put($nombre, \File::get($file)); 
 
         $libro->nombre = $request->input('nombre');
         $libro->autor = $request->input('autor');
         $libro->url_amazon = $request->input('url_amazon');
         $libro->genero = $request->input('genero');
-        $libro->subgenero = $request->input('subgenero');
         $libro->save();
-        $extension = $file->getClientOriginalExtension();
-        $nombre = 'libro'.$libro->id.'.'.$extension;
+        $nombre = 'libro'.$libro->id;
         $libro->url_img = $nombre;
         $libro->save();
-        \Storage::disk('local')->put($nombre, \File::get($file)); 
 
 
         $extracto1->libro_id = $libro->id;
         $extracto1->extracto_texto = $request->input('extracto1');
-        $extracto1->tipo = $request->input('tipo1');
         $extracto1->votos = 0;
         $extracto1->save();
 
         $extracto2->libro_id = $libro->id;
         $extracto2->extracto_texto = $request->input('extracto2');
-        $extracto2->tipo = $request->input('tipo2');
         $extracto2->votos = 0;
         $extracto2->save();
 
         $extracto3->libro_id = $libro->id;
         $extracto3->extracto_texto = $request->input('extracto3');
-        $extracto3->tipo = $request->input('tipo3');
         $extracto3->votos = 0;
         $extracto3->save();
 
-        return redirect('xyz/admin/home');
+        return redirect('admin/home');
     }
 
     public function editar_libro($id){
@@ -86,9 +81,7 @@ class HomeController extends Controller
             \Storage::disk('local')->exists($borrar);
             //Agrega la nueva imagen
             $file = $request->file('imagen');
-            $extension = $file->getClientOriginalExtension();
-            $nombre = 'libro'.$libro->id.'.'.$extension;
-            //$libro->url_img = $nombre;
+            $nombre = $file->getClientOriginalName();
             \Storage::disk('local')->put($nombre, \File::get($file));
             //modifica los campos
             $libro->url_img = $nombre; 
@@ -97,10 +90,9 @@ class HomeController extends Controller
         $libro->autor = $request->input('autor');
         $libro->url_amazon = $request->input('url_amazon');
         $libro->genero = $request->input('genero');
-        $libro->subgenero = $request->input('subgenero');
         $libro->save();
 
-        return redirect('xyz/admin/home');
+        return redirect('admin/home');
     }
 
     public function borrar_libro($id){
@@ -109,7 +101,7 @@ class HomeController extends Controller
             $opcion->delete();
         }
         $libro->delete();
-        return redirect('xyz/admin/home');
+        return redirect('admin/home');
     }
 
 

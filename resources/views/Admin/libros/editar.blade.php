@@ -29,10 +29,7 @@
                         {!! Form::text('autor',null,['class'=>'form-control','placeholder'=>'Autor del libro']) !!}
                         <br>
                         {!! Form::label('genero','Genero: ') !!}
-                        {!! Form::select('genero', ['NOVELA' => 'NOVELA','ENSAYO' => 'ENSAYO','POESIA' => 'POESIA','CUENTO' => 'CUENTO','TEATRO' => 'TEATRO']) !!}
-                        <br>
-                        {!! Form::label('subgenero','Subgenero: ') !!}
-                        {!! Form::text('subgenero',null,['class'=>'form-control','placeholder'=>'Subgenero del libro']) !!}
+                        {!! Form::text('genero',null,['class'=>'form-control','placeholder'=>'Genero del libro']) !!}
                         <br>
                         {!! Form::label('url_amazon','URL: ') !!}
                         {!! Form::text('url_amazon',null,['class'=>'form-control','placeholder'=>'URL de amazon del libro']) !!}

@@ -48,7 +48,7 @@
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="/xyz/admin/home" class="site_title"><i class="fa fa-paw"></i> <span>CODEX</span></a>
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>CODEX</span></a>
                     </div>
                     <div class="clearfix"></div>
 
@@ -74,7 +74,7 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="/xyz/admin/home">Libros</a>
+                                        <li><a href="/admin/home">Libros</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -132,7 +132,7 @@
                                     <li>
                                         <a href="javascript:;">Help</a>
                                     </li>
-                                    <li><a href="{{ url('/xyz/admin/logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="{{ url('/admin/logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>

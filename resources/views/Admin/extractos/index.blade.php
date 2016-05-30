@@ -15,7 +15,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel" style="height:600px;">
                                 <div class="x_title">
-                                    <button onclick="location.href='/xyz/admin/home/addbook';" class="btn btn-md pull-right" ><i class="fa fa-plus-circle"></i> Agregar</button>
+                                    <button onclick="location.href='/admin/home/addbook';" class="btn btn-md pull-right" ><i class="fa fa-plus-circle"></i> Agregar</button>
                   
                                     <div class="clearfix"></div>
                                 </div>

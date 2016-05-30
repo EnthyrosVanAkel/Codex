@@ -19,7 +19,7 @@ class AdminController extends Controller
         if (Auth::check())
         {
             // Si está autenticado lo mandamos a la raíz donde estara el mensaje de bienvenida.
-            return redirect()->intended('xyz/admin/home');
+            return redirect()->intended('admin/home');
         }
         // Mostramos la vista login.blade.php (Recordemos que .blade.php se omite.)
         return \View::make('Admin/login/login');
@@ -33,11 +33,11 @@ class AdminController extends Controller
         );
         if (Auth::attempt($userdata))
         {
-            return redirect()->intended('xyz/admin/home');
+            return redirect()->intended('admin/home');
         }
         else
         {
-        return redirect('xyz/admin/login')->withInput()->with('message', 'Login Failed');
+        return redirect('admin/login')->withInput()->with('message', 'Login Failed');
         }
     }
 
@@ -54,12 +54,12 @@ class AdminController extends Controller
        $usuario->email = $request->input('email');
        $usuario->password = bcrypt($request->input('password'));
        $usuario->save();
-       return redirect('xyz/admin/login');
+       return redirect('admin/login');
    }
 
 
    public function logout(){
     Auth::logout();
-    return redirect('xyz/admin/login');
+    return redirect('admin/login');
    }
 }
