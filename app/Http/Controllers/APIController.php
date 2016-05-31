@@ -10,7 +10,7 @@ use App\User;
 use App\Extracto;
 use App\Lector;
 use App\Libro;
-use App\Historia;
+use App\Gusto;
 use Storage;
 use Carbon\Carbon;
 
@@ -23,6 +23,10 @@ class APIController extends Controller
         return $libros;
     }
 
+    function lista_lectores(){
+        $lectores = Lector::with('gustos')->get();
+        return $lectores;
+    }
 
     //LECTORES
     function crear_lector(Request $request){
@@ -37,7 +41,10 @@ class APIController extends Controller
             $lector->url_img = 'imagen';
             $lector->save();
 
-            $gustos->
+            $gustos = new Gusto();
+            $gustos->lector_id = $lector->id;
+            $gustos->save();
+
             return $lector->id;
         }
         else{

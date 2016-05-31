@@ -44,6 +44,7 @@ Route::delete('xyz/admin/home/{id}','AdminController@borrar_libro');
 //LIBROS
 
 Route::get('xyz/api/libros_list','APIController@lista_libros');
+Route::get('xyz/api/lectores_list','APIController@lista_lectores');
 //LECTORES
 Route::post('xyz/api/create_reader','APIController@crear_lector');
 Route::patch('xyz/api/modify_reader/{id}','APIController@modificar_lector');
