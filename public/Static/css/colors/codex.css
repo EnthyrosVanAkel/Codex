@@ -1,0 +1,10 @@
+strong{color: #3b4961 !important}
+h1 strong, h2 strong{color: #3b4961 !important}
+.pace .pace-progress {background: #ef3d33;}
+.bigIcon,.socialList li a:hover{color: #ef3d33;}
+.btn-new,.downloadNumber{background: #ef3d33}
+.btn-new:hover,.btn-new:focus{background: #ef3d33}
+#share{background-color: #ef3d33;}
+#share h2{color: #fff;}
+ul.nav li a.blogLi{color: #ef3d33;}
+footer{ background: #3b4961}
