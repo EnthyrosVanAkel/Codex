@@ -58,6 +58,10 @@ class APIController extends Controller
         //$lector->email = $request->input('email');
         if ($lector) {
             $lector->email = $request->input('email');
+            $lector->nombre = $request->input('nombre') ;
+            $lector->apellido = $request->input('apellido');
+            $lector->genero = $request->input('genero');
+            $lector->nacimiento = $request->input('nacimiento');
             $lector->save();
             return 'Reader Changed!';
         }
