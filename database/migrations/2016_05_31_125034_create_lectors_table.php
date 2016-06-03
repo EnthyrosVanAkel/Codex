@@ -12,7 +12,7 @@ class CreateLectorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lectors', function (Blueprint $table) {
+        Schema::create('lectores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->string('apellido');
@@ -20,7 +20,7 @@ class CreateLectorsTable extends Migration
             $table->string('email')->unique();
             $table->enum('genero',['M','F']);
             $table->string('url_img');
-            $table->string('password', 60);
+            $table->string('password');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateLectorsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('lectors');
+        Schema::drop('lectores');
     }
 }

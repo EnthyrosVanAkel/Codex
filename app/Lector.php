@@ -8,6 +8,7 @@ class Lector extends Model
 {
     //
     //
+    protected $table = 'lectores';
     protected $hidden = ['id','password','created_at','updated_at'];
 
    	public function gustos()

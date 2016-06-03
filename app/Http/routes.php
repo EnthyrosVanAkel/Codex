@@ -47,4 +47,6 @@ Route::get('xyz/api/libros_list','APIController@lista_libros');
 Route::get('xyz/api/lectores_list','APIController@lista_lectores');
 //LECTORES
 Route::post('xyz/api/create_reader','APIController@crear_lector');
-Route::patch('xyz/api/modify_reader/{id}','APIController@modificar_lector');
+Route::put('xyz/api/modify_reader','APIController@modificar_lector');
+Route::put('xyz/api/modify_password','APIController@change_password');
+Route::post('xyz/api/login_lector','APIController@login_lector');
