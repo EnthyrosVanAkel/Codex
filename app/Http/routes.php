@@ -50,3 +50,4 @@ Route::post('xyz/api/create_reader','APIController@crear_lector');
 Route::put('xyz/api/modify_reader','APIController@modificar_lector');
 Route::put('xyz/api/modify_password','APIController@change_password');
 Route::post('xyz/api/login_lector','APIController@login_lector');
+Route::post('xyz/api/send_books','APIController@obtener_gustos');

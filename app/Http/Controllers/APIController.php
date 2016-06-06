@@ -12,10 +12,16 @@ use App\User;
 use App\Extracto;
 use App\Lector;
 use App\Libro;
+
+//
 use App\Gusto;
+use App\leidoExtracto;
+use App\leidoLibro;
+//
 
 use Crypt;
 use Storage;
+use File;
 use Carbon\Carbon;
 use Validator;
 
@@ -54,9 +60,16 @@ class APIController extends Controller
             if ($request->input('password')) {
                 $lector->password = Crypt::encrypt($request->input('password'));
             }
-            $lector->url_img = 'imagen';
             $lector->save();
 
+            $file = $request->file('imagen');
+            $extension = $file->getClientOriginalExtension();
+            $nombre = 'lector'.$lector->id.'.'.$extension;
+            Storage::disk('s3')->put('lectores/' . $nombre, File::get($file));
+            $url = Storage::cloud()->url('lectores/' . $nombre);
+            $lector->url_img = $url;
+            $lector->save();
+ 
             $gustos = new Gusto();
             $gustos->lector_id = $lector->id;
             $gustos->save();
@@ -85,6 +98,17 @@ class APIController extends Controller
             if ($request->input('nacimiento')) {
                 $lector->nacimiento = $request->input('nacimiento');
             }
+            if ($request->file('imagen')) {
+
+                $file = $request->file('imagen');
+                $extension = $file->getClientOriginalExtension();
+                $nombre = 'lector'.$lector->id.'.'.$extension;
+                Storage::disk('s3')->put('lectores/' . $nombre, File::get($file));
+                $url = Storage::cloud()->url('lectores/' . $nombre);
+                $lector->url_img = $url;
+
+            }
+
             $lector->save();
             return 'Reader Changed!';
         }
@@ -125,5 +149,24 @@ class APIController extends Controller
         else{
             return 'NotFound';
         }
+    }
+
+
+
+    public function obtener_gustos(Request $request){
+        $id = $request->input('id');        
+        $lector = Lector::find($id);
+        $libros = $request->input('libros'); 
+        $t = count($libros);
+        $a = gettype($libros);
+        /*
+        
+        if ($lector) {
+            return 'encontrado'.$t;
+        }
+        else{
+            return gettype($json).$t;
+        } */
+        return $lector . $t . $a;
     }
 }

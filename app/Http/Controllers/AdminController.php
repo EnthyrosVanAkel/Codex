@@ -11,6 +11,9 @@ use App\Http\Requests\modificarLibroRequest;
 use App\User;
 use Auth;
 
+
+use Storage;
+use File;
 use App\Libro;
 use App\Extracto;
 use App\Historia;
@@ -52,10 +55,15 @@ class AdminController extends Controller
         $libro->save();
         $extension = $file->getClientOriginalExtension();
         $nombre = 'libro'.$libro->id.'.'.$extension;
-        $libro->url_img = $nombre;
-        $libro->save();
-        \Storage::disk('local')->put($nombre, \File::get($file)); 
 
+        Storage::disk('s3')->put('portadas/' . $nombre, File::get($file)); 
+
+        $url = Storage::cloud()->url('portadas/' . $nombre);
+
+        //$url = Storage::url('portadas/' . $nombre);
+
+        $libro->url_img = $url;
+        $libro->save();
 
         $extracto1->libro_id = $libro->id;
         $extracto1->extracto_texto = $request->input('extracto1');
@@ -89,16 +97,22 @@ class AdminController extends Controller
         $borrar = $libro->url_img;
         if($request->file('imagen')){
             //Borra la imagen
-            \Storage::disk('local')->exists($borrar);
+            \Storage::disk('s3')->exists($borrar);
+            // FALTA BORRAR IMAGEN0
             //Agrega la nueva imagen
             $file = $request->file('imagen');
             $extension = $file->getClientOriginalExtension();
             $nombre = 'libro'.$libro->id.'.'.$extension;
-            //$libro->url_img = $nombre;
-            \Storage::disk('local')->put($nombre, \File::get($file));
-            //modifica los campos
-            $libro->url_img = $nombre; 
+            Storage::disk('s3')->put('portadas/' . $nombre, File::get($file)); 
+
+            $url = Storage::cloud()->url('portadas/' . $nombre);
+
+            //$url = Storage::url('portadas/' . $nombre);
+
+            $libro->url_img = $url;
+            //$libro->save(); 
         }
+
         $libro->nombre = $request->input('nombre');
         $libro->autor = $request->input('autor');
         $libro->url_amazon = $request->input('url_amazon');
@@ -123,5 +137,6 @@ class AdminController extends Controller
     	$user = Auth::user();
         $libro = Libro::find($id);
         return view('Admin/extractos/index',compact('user','libro'));
-    }  
+    }
+
 }
