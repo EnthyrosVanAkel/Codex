@@ -4,9 +4,10 @@
 Homestead.yaml
 Homestead.json
 .env
+.env1
 
 .elasticbeanstalk/
-.ebextensions/
+.ebextensions/*
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
