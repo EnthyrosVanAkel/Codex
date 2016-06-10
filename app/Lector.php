@@ -15,4 +15,8 @@ class Lector extends Model
     {
         return $this->hasOne('App\Gusto');
     }
+    public function leidos()
+    {
+        return $this->hasOne('App\Leido');
+    }
 }

@@ -15,10 +15,12 @@ use App\Libro;
 
 //
 use App\Gusto;
+use App\Leido;
 use App\leidoExtracto;
 use App\leidoLibro;
+use App\gustoExtracto;
+use App\gustoLibro;
 //
-
 use Crypt;
 use Storage;
 use File;
@@ -63,16 +65,23 @@ class APIController extends Controller
             $lector->save();
 
             $file = $request->file('imagen');
-            $extension = $file->getClientOriginalExtension();
-            $nombre = 'lector'.$lector->id.'.'.$extension;
-            Storage::disk('s3')->put('lectores/' . $nombre, File::get($file));
-            $url = Storage::cloud()->url('lectores/' . $nombre);
-            $lector->url_img = $url;
+            if($file) {
+                $extension = $file->getClientOriginalExtension();
+                $nombre = 'lector'.$lector->id.'.'.$extension;
+                Storage::disk('s3')->put('lectores/' . $nombre, File::get($file));
+                $url = Storage::cloud()->url('lectores/' . $nombre);
+                $lector->url_img = $url;
+            }
+            
             $lector->save();
  
             $gustos = new Gusto();
             $gustos->lector_id = $lector->id;
             $gustos->save();
+
+            $leidos = new Leido();
+            $leidos->lector_id = $lector->id;
+            $leidos->save();
 
             return $lector->id;
         }
@@ -151,22 +160,77 @@ class APIController extends Controller
         }
     }
 
-
+/*
 
     public function obtener_gustos(Request $request){
-        $id = $request->input('id');        
+        $id = $request->input('id');         
         $lector = Lector::find($id);
+        $leidos = $lector->gustos;
+        $gustos = $lector->leidos;
+        $libros = $request->input('libros');
+        $s = "";
+        foreach ($libros as $libro) {
+            $s = $s.$libro['id_l'];
+
+        }
+        return $s;
+    }
+*/
+
+    
+    public function obtener_gustos(Request $request){
+        $id = $request->input('id');         
+        $lector = Lector::find($id);
+        $leidos = $lector->gustos;
+        $gustos = $lector->leidos;
         $libros = $request->input('libros'); 
         $t = count($libros);
-        $a = gettype($libros);
-        /*
-        
-        if ($lector) {
-            return 'encontrado'.$t;
+        foreach ($libros as $l) {
+            $libro_id = $l['id_l'];
+            $libro = Libro::find($libro_id);
+            $genero = strtolower($libro->genero);
+            switch ($genero) {
+                case 'novela':
+                    $n = $leidos->m_novela;
+                    $leidos->m_novela = $n + 1;
+                    break;
+                case 'ensayo':
+                    $n = $leidos->m_ensayo;
+                    $leidos->m_ensayo = $n + 1;
+                     break;
+                case 'poesia':
+                    $n = $leidos->m_poesia;
+                    $leidos->m_poesia = $n + 1;
+                    break;
+                case 'cuento':
+                    $n = $leidos->m_cuento;
+                    $leidos->m_cuento = $n + 1;
+                    break;
+                case 'teatro':
+                    $n = $leidos->m_teatro;
+                    $leidos->m_teatro = $n + 1;
+                    break; 
+            }
+            $leidos->save(); 
+            $leidoLibro = new leidoLibro();
+            $leidoLibro->lector_id = $id;
+            $leidoLibro->libro_id = $libro_id;
+            $leidoLibro->save();
+            foreach ($l['extractos'] as $e) {
+                 $extracto_id = $e['id_e'];
+                 $leidoExtracto = new leidoExtracto();
+                 $leidoExtracto->lector_id = $id;
+                 $leidoExtracto->extracto_id = $extracto_id;
+                 $leidoExtracto->save();
+                if ($e['gusto'] == 1) {
+                    $gustoExtracto = new gustoExtracto();
+                    $gustoExtracto->lector_id = $id;
+                    $gustoExtracto->extracto_id = $extracto_id;
+                    $gustoExtracto->save();
+                }
+            }
         }
-        else{
-            return gettype($json).$t;
-        } */
-        return $lector . $t . $a;
-    }
+        
+        return 'hecho';
+    }    
 }
